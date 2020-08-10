@@ -1,1 +1,51 @@
-<p>shopping-card-form works!</p>
+<div class="app-form">
+  <div class="app-form__container" *ngIf="compraQuery.activeEntity$ | async; let compra">
+    <ng-container *ngIf="compraQuery.editMode$ | async; let editMode">
+      <form [formGroup]="compraForm">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+
+
+              <ng-container *ngIf="editMode">
+                <mat-form-field>
+                  <mat-label>Elige una fecha</mat-label>
+                  <input matInput formControlName="fecha" [matDatepicker]="picker">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-error *ngIf="compraForm.controls.fecha.touched && compraForm.controls.fecha.errors as error">
+                  <ng-container *ngIf="error.required">
+                    Falta escribir la fecha
+                  </ng-container>
+
+                </mat-error>
+
+              </ng-container>
+              <ng-container *ngIf="!editMode">
+                Lista de {{(compra.fecha | date: 'dd/MM/yyyy')}}
+              </ng-container>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="app-form__container__products">
+              <div class="app-form__container__products--product" *ngFor="let producto of compra.productos">
+                {{producto}}
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-footer>
+            <div class="app-form__container__footer">
+              <ng-container *ngIf="!editMode">
+                <button mat-raised-button color="primary">Editar</button>
+              </ng-container>
+              <ng-container *ngIf="editMode">
+                <button mat-raised-button color="primary" (click)="save()">Guardar</button>
+              </ng-container>
+            </div>
+          </mat-card-footer>
+        </mat-card>
+      </form>
+    </ng-container>
+  </div>
+</div>

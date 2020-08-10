@@ -1,0 +1,26 @@
+.app-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  &__container {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row;
+    justify-content: center;
+    &__products {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      flex-flow: column;
+      &--product {
+        margin: 10px 0;
+      }
+    }
+    &__footer {
+      display: flex;
+      margin: 20px 0;
+      flex-flow: column;
+    }
+  }
+}
