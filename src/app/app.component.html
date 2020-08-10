@@ -1,0 +1,37 @@
+<div class="app-main" *ngIf="!(authQuery.isLoading$ | async); else loading">
+  <div class="app-main__toolbar">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        La lista de la compra
+        <span class="app-main__toolbar__spacer"></span>
+        <ng-container *ngIf="authQuery.isLoggedIn$ | async; else notLogged">
+
+          <a class="app-main__toolbar__link" (click)="authService.updateAction(AUTH_ACTIONS.LOGOUT)"
+            class="app-main__toolbar__link">
+            <mat-icon class="app-main__toolbar__icon" aria-hidden="false">person
+            </mat-icon>
+            Logout
+          </a>
+          <a class="app-main__toolbar__link" [routerLink]="['/compra']">
+            <mat-icon class="app-main__toolbar__icon" aria-hidden="false">shopping_cart
+            </mat-icon>
+            Compra
+          </a>
+        </ng-container>
+        <ng-template #notLogged>
+          <a [routerLink]="['/login']" class="app-main__toolbar__link">
+            <mat-icon class="app-main__toolbar__icon" aria-hidden="false">person
+            </mat-icon>
+            Login
+          </a>
+        </ng-template>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <div class="app-main__content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<ng-template #loading>
+  Cargando...
+</ng-template>

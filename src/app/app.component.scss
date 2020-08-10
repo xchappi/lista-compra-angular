@@ -1,0 +1,25 @@
+.app-main {
+  display: flex;
+  flex-direction: row;
+  flex-flow: column;
+  &__toolbar {
+    flex: 1 1 auto;
+    align-items: center;
+    &__link {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      &:active {
+        color: white;
+      }
+    }
+    &__spacer {
+      flex: 1 1 auto;
+    }
+    &__icon {
+      padding: 0 14px;
+    }
+  }
+}

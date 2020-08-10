@@ -1,0 +1,21 @@
+<div class="app-listas">
+  <div class="app-listas__card" *ngFor="let listaCompra of compraQuery.listas$ | async">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Lista de {{listaCompra.fecha | date: 'dd/MM/yyyy'}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="app-listas__card__products">
+          <div class="app-listas__card__products--product" *ngFor="let producto of listaCompra.productos">
+            {{producto}}
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-footer>
+        <div class="app-listas__card__footer">
+          <button mat-raised-button color="primary" (click)="edit(listaCompra)">Editar</button>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
