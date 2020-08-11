@@ -16,10 +16,40 @@ export class ShoppingCardListComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.resetActiveState();
+  }
+
+  /**
+   * PUBLIC METHODS
+   */
+
+  // go to lista-compra on editMode
   edit(listaCompra: Compra) {
     this.compraService.setActiveEntity(listaCompra.id);
     this.compraService.updateUI({ editMode: true });
     this.router.navigate(['compra/lista-compra']);
+  }
+  view(listaCompra: Compra) {
+    this.compraService.setActiveEntity(listaCompra.id);
+    this.compraService.updateUI({ editMode: false });
+    this.router.navigate(['compra/lista-compra']);
+  }
+  create() {
+    this.compraService.updateUI({ editMode: true });
+    this.router.navigate(['compra/lista-compra']);
+  }
+  remove(listaCompra: Compra) {
+    this.compraService.remove(<string>listaCompra.id);
+  }
+
+  /**
+   * PRIVATE METHODS
+   */
+
+  // reset the activeState
+  private resetActiveState() {
+    this.compraService.setActiveEntity(null);
+    this.compraService.updateUI({ editMode: false });
   }
 }

@@ -2,7 +2,7 @@ import { Producto } from '../productos/producto.model';
 export interface Compra {
   id: number | string;
   productos: string[];
-  fecha: Date;
+  fecha: string;
 }
 
 export function createCompra(params: Partial<Compra>) {

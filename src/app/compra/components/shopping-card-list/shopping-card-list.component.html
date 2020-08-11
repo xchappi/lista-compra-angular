@@ -1,21 +1,28 @@
 <div class="app-listas">
-  <div class="app-listas__card" *ngFor="let listaCompra of compraQuery.listas$ | async">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Lista de {{listaCompra.fecha | date: 'dd/MM/yyyy'}}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="app-listas__card__products">
-          <div class="app-listas__card__products--product" *ngFor="let producto of listaCompra.productos">
-            {{producto}}
+  <div class="app-listas__container">
+    <div class="app-listas__container__card" *ngFor="let listaCompra of compraQuery.listas$ | async">
+      <mat-card>
+        <mat-card-header (click)="view(listaCompra)">
+          <mat-card-title>Lista de {{listaCompra.fecha | date: 'dd/MM/yyyy'}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content (click)="view(listaCompra)">
+          <div class="app-listas__container__card__products">
+            <div class="app-listas__container__card__products--product" *ngFor="let producto of listaCompra.productos">
+              {{producto}}
+            </div>
           </div>
-        </div>
-      </mat-card-content>
-      <mat-card-footer>
-        <div class="app-listas__card__footer">
-          <button mat-raised-button color="primary" (click)="edit(listaCompra)">Editar</button>
-        </div>
-      </mat-card-footer>
-    </mat-card>
+        </mat-card-content>
+        <mat-card-footer>
+          <div class="app-listas__container__card__footer">
+            <button mat-raised-button color="primary" (click)="edit(listaCompra)">Editar</button>
+            <button mat-raised-button color="warn" (click)="remove(listaCompra)">Eliminar lista</button>
+          </div>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+  <div class="app-listas__footer">
+    <button mat-raised-button color="accent" (click)="create()">Nueva lista</button>
+
   </div>
 </div>
