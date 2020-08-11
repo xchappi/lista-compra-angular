@@ -52,11 +52,11 @@ jobs:
         run: npm install
       # build the app
       - name: Build the app artifact for prod
-        run: npm run build --prod
+        run: npm -- run build --prod
       # ddeploy the app artifact to firebase
       - name: Deploy angular app to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting:xchappi-lista-compra
+          args: deploy --only hosting --project xchappi-lista-compra
         env:
           FIREBASE_TOKEN: ${{ secrets.firebase_token }}
