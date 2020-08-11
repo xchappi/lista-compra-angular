@@ -6,11 +6,10 @@
         <span class="app-main__toolbar__spacer"></span>
         <ng-container *ngIf="authQuery.isLoggedIn$ | async; else notLogged">
 
-          <a class="app-main__toolbar__link" (click)="authService.updateAction(AUTH_ACTIONS.LOGOUT)"
-            class="app-main__toolbar__link">
+          <a (click)="authService.updateAction(AUTH_ACTIONS.LOGOUT)" class="app-main__toolbar__link">
             <mat-icon class="app-main__toolbar__icon" aria-hidden="false">person
             </mat-icon>
-            Logout
+            Desconectar
           </a>
           <a class="app-main__toolbar__link" [routerLink]="['/compra']">
             <mat-icon class="app-main__toolbar__icon" aria-hidden="false">shopping_cart
@@ -22,7 +21,7 @@
           <a [routerLink]="['/login']" class="app-main__toolbar__link">
             <mat-icon class="app-main__toolbar__icon" aria-hidden="false">person
             </mat-icon>
-            Login
+            Entrar
           </a>
         </ng-template>
       </mat-toolbar-row>
