@@ -2,7 +2,7 @@
   "targets": {
     "xchappi-lista-compra": {
       "hosting": {
-        "lista-compra-angular": [
+        "xchappi-lista-compra": [
           "xchappi-lista-compra"
         ]
       }
