@@ -1,13 +1,12 @@
-
 # This is a basic workflow to help you get started with Actions
 name: CI/CD
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # build job
@@ -23,7 +22,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@master
         with:
-          node-version: '10.x'
+          node-version: "10.x"
       # Install the dependencies need to build the app
       - name: Install Dependencies
         run: npm install
@@ -31,23 +30,23 @@ jobs:
       - name: Build
         run: npm run build --prod
       # sotre the artifact
-      - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: public
-          path: ./public
-  # deploy job   
+      # - name: Archive Production Artifact
+      #   uses: actions/upload-artifact@master
+      #   with:
+      #     name: public
+      #     path: ./public
+  # deploy job
   deploy:
     name: Deploy to firebase
     runs-on: ubuntu-latest
-    # only run if build job complte successfully 
+    # only run if build job complte successfully
     needs: [build]
     steps:
       # building the app before deploy
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
         with:
-          node-version: '10.x'
+          node-version: "10.x"
       # Install the dependencies need to build the app
       - name: Install Dependencies
         run: npm install
