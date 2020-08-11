@@ -11,7 +11,7 @@
           </mat-form-field>
           <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors as error">
             <ng-container *ngIf="error.required">
-              Falta escribir el email
+              El email es obligatorio
             </ng-container>
             <ng-container *ngIf="error.email">
               El email está mal escrito
@@ -22,7 +22,7 @@
           </mat-form-field>
           <mat-error *ngIf="loginForm.controls.password.touched &&  loginForm.controls.password.errors as error">
             <ng-container *ngIf="error.required">
-              Falta escribir la contraseña
+              La contraseña es obligatoria
             </ng-container>
           </mat-error>
         </form>
