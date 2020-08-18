@@ -8,7 +8,14 @@ import {
 import { AuthenticationService } from '../core/state/authentication/authentication.service';
 import { AuthenticationActions } from '../core/state/authentication/authentication.actions';
 import { AuthenticationQuery } from '../core/state/authentication/authentication.query';
-import { startWith, first, takeWhile } from 'rxjs/operators';
+import {
+  startWith,
+  first,
+  takeWhile,
+  skipUntil,
+  skipWhile,
+  tap,
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -31,10 +38,7 @@ export class LoginComponent implements OnInit {
     this.service.login(this.loginForm.value).then(
       (success) => {
         this.query.isLoggedIn$
-          .pipe(
-            takeWhile((isLoggedIn) => isLoggedIn === true),
-            first()
-          )
+          .pipe(skipWhile((isLoading) => isLoading == false))
           .subscribe((isLoading) => {
             this.service.updateAction(AuthenticationActions.LOGIN_SUCCESS);
           });
